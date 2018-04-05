@@ -54,14 +54,14 @@ public class FlightSearchServiceImpl implements FlightSearchServiceI{
             FlightDetails flightDetails = (FlightDetails) iterator.next();
             if((flightDetails.getFromCity().equals(fromCity))
                     &&(flightDetails.getToCity().equals(toCity))
-                    &&(flightDetails.getTravelDate().isAfter(formattedDate))){
+                    &&((flightDetails.getTravelDate().isEqual(formattedDate))
+                    || (flightDetails.getTravelDate().isAfter(formattedDate)))){
                 searchedFlightList.add(flightDetails);
             }
         }
     }
 
     public void reduceAvailableSeats(String fromCity, String toCity, String dateVal, int bookedSeats){
-        System.out.println("--"+fromCity+"--"+toCity+"--"+dateVal+"--"+bookedSeats);
 
         Iterator iterator = flights.iterator();
         LocalDate formattedDate = dateConvertion(dateVal);
